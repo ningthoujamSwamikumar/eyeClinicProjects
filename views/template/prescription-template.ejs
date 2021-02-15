@@ -1,0 +1,196 @@
+<%- include("../partials/headers/template-header"); -%>
+
+
+<div class="p-1 border m-3">
+  <div class="border" id="drug">
+    <!-- personal details template -->
+    <div class="border m-2 p-2">
+      <div class="form-row">
+        <div class="col col-9">
+          <label class="font-weight-bold">Full Name: </label>
+          <%= fullName %>
+        </div>
+        <div class="col">
+          <label class="font-weight-bold">Date: </label>
+          <%= dateTime %>
+        </div>
+      </div>
+      <div class="form-row pt-2">
+        <div class="col col-9">
+          <label class="font-weight-bold">Address: </label>
+          <%= address %>
+        </div>
+        <div class="col">
+          <label class="font-weight-bold">Age/Sex: </label>
+          <%= ageSex %>
+        </div>
+      </div>
+    </div>
+    <!-- drug prescription (Rx.) template -->
+    <div class="p-2 m-2 border border-2 border-dark">
+      <h4>Rx.</h4>
+      <table class="table table-bordered" id="drugprescriptiontable">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">SL.</th>
+            <th scope="col">EYE</th>
+            <th scope="col" class="w-25">DRUGS</th>
+            <th scope="col">DOSES</th>
+            <th scope="col">DURATION</th>
+            <th scope="col">STARTING DATE</th>
+            <th scope="col">LAST DATE</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% if(Array.isArray(rxpSl)){  for(let i =0; i<rxpSl.length; i++){ %>
+          <tr>
+            <th scope="row"> <%= rxpSl[i] %> </th>
+            <td> <%= rxpEye[i] %> </td>
+            <td> <%= rxpDrug[i] %> </td>
+            <td> <%= rxpDose[i] %> </td>
+            <td> <%= rxpDuration[i] %> </td>
+            <td> <%= rxpStartDate[i] %> </td>
+            <td> <%= rxpEndDate[i] %> </td>
+          </tr>
+          <%  }}else{ %>
+          <tr>
+            <th scope="row"> <%= rxpSl %> </th>
+            <td> <%= rxpEye %> </td>
+            <td> <%= rxpDrug %> </td>
+            <td> <%= rxpDose %> </td>
+            <td> <%= rxpDuration %> </td>
+            <td> <%= rxpStartDate %> </td>
+            <td> <%= rxpEndDate %> </td>
+          </tr>
+          <%  } %>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="d-flex justify-content-center" id="buttonOne">
+      <button type="button" class="btn btn-lg btn-primary p-2 w-25 my-2 " onclick="myPrint(0)">Print Drug Prescription</button>
+    </div> -->
+  </div>
+  <div class="d-flex justify-content-center" id="buttonOne">
+    <button type="button" class="btn btn-lg btn-primary p-2 w-25 my-2 " onclick="printDiv('drug')">Print Drug Prescription</button>
+  </div>
+
+
+  <hr class="my-5 hidehr">
+
+
+  <div class="border" id="glass">
+    <!-- personal details template -->
+    <div class="border m-2 p-2">
+      <div class="form-row">
+        <div class="col col-9">
+          <label for="fullname">Full Name: </label>
+          <%= fullName %>
+        </div>
+        <div class="col">
+          <label for="date-time">Date: </label>
+          <%= dateTime %>
+        </div>
+      </div>
+      <div class="form-row pt-2">
+        <div class="col col-9">
+          <label for="address">Address: </label>
+          <%= address %>
+        </div>
+        <div class="col">
+          <label for="age-sex">Age/Sex: </label>
+          <%= ageSex %>
+        </div>
+      </div>
+    </div>
+    <!-- glass prescription template -->
+    <div class="p-2 m-2 border border-2 border-dark">
+      <h4>GLASS PRESCRIPTION</h4>
+      <table class="table table-bordered" id="glassprescriptiontable">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" colspan="4" style="border-right: solid 1px white; text-align: center;">Right Eye</th>
+            <th scope="col" colspan="4" style="text-align: center;">Left Eye</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td>SPH</td>
+            <td class="">CYL</td>
+            <td>AXIS</td>
+            <td>V/A</td>
+            <td>SPH</td>
+            <td>CYL</td>
+            <td>AXIS</td>
+            <td>V/A</td>
+          </tr>
+          <tr>
+            <th scope="row">DV</th>
+            <td> <%=gpDVrightSPH %> </td>
+            <td> <%=gpDVrightCYL %> </td>
+            <td> <%=gpDVrightAXIS %> </td>
+            <td> <%=gpDVrightVA %> </td>
+            <td> <%=gpDVleftSPH %> </td>
+            <td> <%=gpDVleftCYL %> </td>
+            <td> <%=gpDVleftAXIS %> </td>
+            <td> <%=gpDVleftVA %> </td>
+          </tr>
+          <tr>
+            <th scope="row">NV</th>
+            <td> <%=gpNVrightSPH %> </td>
+            <td> <%=gpNVrightCYL %> </td>
+            <td> <%=gpNVrightAXIS %> </td>
+            <td> <%=gpNVrightVA %> </td>
+            <td> <%=gpNVleftSPH %> </td>
+            <td> <%=gpNVleftCYL %> </td>
+            <td> <%=gpNVleftAXIS %> </td>
+            <td> <%=gpNVleftVA %> </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="d-flex justify-content-center" id="buttonTwo">
+      <button type="button" class="btn btn-lg btn-primary p-2 w-25 my-2 " onclick="myPrint(1)">Print Glass Prescription</button>
+    </div> -->
+  </div>
+  <div class="d-flex justify-content-center" id="buttonTwo">
+    <button type="button" class="btn btn-lg btn-primary p-2 w-25 my-2 " onclick="printDiv('glass')">Print Glass Prescription</button>
+  </div>
+</div>
+
+
+<script>
+  //this function works with one button being display
+  // function myPrint(id) {
+  //   if (id === 0) {
+  //     document.getElementById("glass").classList.add("tobehidden");
+  //     document.getElementById("buttonTwo").classList.add("hidebutton");
+  //   } else if (id === 1) {
+  //     document.getElementById("drug").classList.add("tobehidden");
+  //     document.getElementById("buttonOne").classList.add("hidebutton");
+  //   }
+  //   window.print();
+  //   if (id === 0) {
+  //     document.getElementById("glass").classList.remove("tobehidden");
+  //     document.getElementById("buttonTwo").classList.remove("hidebutton");
+  //   } else if (id === 1) {
+  //     document.getElementById("drug").classList.remove("tobehidden");
+  //     document.getElementById("buttonOne").classList.remove("hidebutton");
+  //   }
+  // }
+
+  //this function works exactly as i want
+  function printDiv(divName) {
+     var printContents = document.getElementById("head_div").innerHTML + document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+     document.body.innerHTML = printContents;
+     window.print();
+     document.body.innerHTML = originalContents;
+}
+</script>
+
+<%- include("../partials/headers/template-footer"); -%>

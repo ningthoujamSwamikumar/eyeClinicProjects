@@ -1,0 +1,31 @@
+<div class="tab-pane fade show active" id="search" role="tabpanel" aria-labelledby="search-tab">
+  <form action="/dashboard/patient/search" method="post">
+    <div class="row justify-content-center">
+      <div class="col col-6">
+        <input class="form-control search-box" type="search" name="patientName"
+         placeholder="Enter Patient Name" aria-label="Search" autocomplete="off">
+      </div>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+  </form>
+  <!-- display all the search results found -->
+  <div class="search-result p-3 mt-2 row justify-content-center">
+    <div class="mb-3 w-100 font-weight-bolder text-center">
+      <%= searchResult %>
+    </div>
+    <div class="border border-dark">
+
+      <% foundPatients.forEach((patient, i) => {  %>
+        <form action="/dashboard/patient/foundClinical" method="post" class="dislay-found-patients p-2 m-2" id="searchResultForm<%=i%>">
+          <input type="hidden" name="patientId<%=i%>" value=<%=patient._id%>>
+          <button class="btn" type="submit" form="searchResultForm<%=i%>">
+            <span class="font-weight-bold">Name:</span> <%= patient.name %>
+            <span class="font-weight-bold">Address:</span> <%= patient.address %>
+            <span class="font-weight-bold">age/sex:</span> <%= patient.agesex %>
+          </button>
+        </form>
+      <%  });  %>
+
+    </div>
+  </div>
+</div>

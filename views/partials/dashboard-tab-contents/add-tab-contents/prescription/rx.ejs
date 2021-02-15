@@ -1,0 +1,76 @@
+<div>
+  <h4>Rx.</h4>
+
+  <table class="table table-borderless" id="drugprescriptiontable">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">SL.</th>
+        <th scope="col">EYE</th>
+        <th scope="col" class="w-25">DRUGS</th>
+        <th scope="col">DOSES</th>
+        <th scope="col">DURATION</th>
+        <th scope="col">STARTING DATE</th>
+        <th scope="col">LAST DATE</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <th scope="row"><input type="text" name="rxpSl" class="form-control" /></th>
+        <td><input type="text" name="rxpEye" class="form-control" /></td>
+        <td class=""><input type="text" name="rxpDrug"  class="form-control"/></td>
+        <td><input type="text" name="rxpDose"  class="form-control"/></td>
+        <td><input type="text" name="rxpDuration"  class="form-control"/></td>
+        <td><input type="text" name="rxpStartDate"  class="form-control"/></td>
+        <td><input type="text" name="rxpEndDate"  class="form-control"/></td>
+        <td><a class="deleteDrug"></a></td>
+      </tr> -->
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-light btn-block " id="adddrug" name="addDrug">Add Drug</button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+      var counter = 0;
+
+      $("#adddrug").on("click", function () {
+          var newRow = $("<tr>");
+          var cols = "";
+
+          cols += '<td><input type="text" class="form-control" name="rxpSl"/></td>';
+          cols += '<td><input type="text" class="form-control" name="rxpEye"/></td>';
+          cols += '<td><input type="text" class="form-control" name="rxpDrug"/></td>';
+          cols += '<td><input type="text" class="form-control" name="rxpDose"/></td>';
+          cols += '<td><input type="text" class="form-control" name="rxpDuration"/></td>';
+          cols += '<td><input type="text" class="form-control" name="rxpStartDate"/></td>';
+          cols += '<td><input type="text" class="form-control" name="rxpEndDate"/></td>';
+
+          cols += '<td><input type="button" class="del-drug-btn btn btn-md btn-danger "  value="Delete"></td>';
+          newRow.append(cols);
+          $("#drugprescriptiontable").append(newRow);
+          counter++;
+      });
+
+
+      $("table#drugprescriptiontable").on("click", ".del-drug-btn", function (event) {
+          $(this).closest("tr").remove();
+          counter -= 1
+      });
+  });
+
+
+  function calculateRow(row) {
+      var price = +row.find('input[name^="price"]').val();
+
+  }
+
+  function calculateGrandTotal() {
+      var grandTotal = 0;
+      $("table#drugprescriptiontable").find('input[name^="price"]').each(function () {
+          grandTotal += +$(this).val();
+      });
+      $("#grandtotal").text(grandTotal.toFixed(2));
+  }
+
+</script>

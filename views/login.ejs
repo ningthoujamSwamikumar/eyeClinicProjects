@@ -1,0 +1,30 @@
+<%- include("partials/headers/homeHeader"); -%>
+
+<!--login error message display are -->
+<div class="text-danger text-center font-weight-bold">
+  <%= loginErrMsg %>
+</div>
+
+  <div class="row justify-content-center ">
+    <div class="col col-5">
+      <form class="shadow mb-lg-5 mb-sm-3 mt-lg-5 mt-sm-3 p-3" method="post" action="/login">
+        <div class="form-group">
+          <label for="userid">Username</label>
+          <input type="text" class="form-control" id="userid" name="username" placeholder="Enter username" />
+        </div>
+        <div class="form-group">
+          <label for="login_password">Password</label>
+          <input type="password" class="form-control" id="login_password" name="password" placeholder="Password" />
+        </div>
+        <div class="mt-lg-2 mt-sm-1">
+          <button type="submit" class="btn btn-primary ">Login</button>
+          <a class="pl-5 mt-lg-2 mt-sm-1" href="/register">Create New Account</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+
+<%- include('partials/headers/homeFooter'); -%>

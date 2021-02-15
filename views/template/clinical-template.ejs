@@ -1,0 +1,404 @@
+<%- include('../partials/headers/homeHeader'); -%>
+
+
+<!-- clinical work up template to use in search patient tab -->
+<div class="p-2 m-2 border shadow">
+  <div class="row">
+    <div class="col">
+      <h2 class="d-inline">CLINICAL WORK UP </h2>
+    </div>
+    <div class="text-right col">
+      <h3><a href="/dashboard" class="close-icon text-dark" title="close"><i class="far fa-times-circle"></i></a></h3>
+    </div>
+  </div>
+
+
+
+  <!-- personal details template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <div class="form-row">
+      <div class="col col-9">
+        <label class="font-weight-bold">Full Name: </label>
+        <%= patient.name %>
+      </div>
+      <div class="col">
+        <label class="font-weight-bold">Date: </label>
+        <%= patient.datetime %>
+      </div>
+    </div>
+    <div class="form-row pt-2">
+      <div class="col col-9">
+        <label class="font-weight-bold">Address: </label>
+        <%= patient.address %>
+      </div>
+      <div class="col">
+        <label class="font-weight-bold">Age/Sex: </label>
+        <%= patient.agesex %>
+      </div>
+    </div>
+  </div>
+
+  <!-- chief complain template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>CHIEF COMPLAINTS</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered " id="complaintable">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">SL.</th>
+            <th scope="col">EYE</th>
+            <th scope="col">DESCRIPTIONS</th>
+            <th scope="col">DURATION</th>
+            <th scope="col">ONSET</th>
+            <th scope="col">CURRENT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% patient.clinicalWorkup.complains.forEach((complain,i)=>{ %>
+            <tr>
+              <th scope="row"><%=complain.Slno%></th>
+              <td><%=complain.Eye%></td>
+              <td class=""><%=complain.Description%></td>
+              <td><%=complain.Duration%></td>
+              <td><%=complain.Onset%></td>
+              <td><%=complain.Current%></td>
+            </tr>
+        <%  }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ocular and medical history template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>OCULAR & MEDICAL HISTORY</h4>
+    <table class="table table-bordered" id="historytable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">SL.</th>
+          <th scope="col">OCULAR HISTORY</th>
+          <th scope="col">MEDICAL HISTORY</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%  patient.clinicalWorkup.histories.forEach((history, i) => { %>
+          <tr>
+            <th scope="row"><%=history.Slno%></th>
+            <td><%=history.Ocular%></td>
+            <td><%=history.Medical%></td>
+          </tr>
+      <%  }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- vision template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>VISION</h4>
+    <!-- main heading -->
+    <div class="">
+      <div class="row mx-1">
+        <div class="col-6 bg-light border border-white" style="text-align: center; font-weight: bold;">WITHOUT GLASS</div>
+        <div class="col-6 bg-light border border-white" style="text-align: center; font-weight: bold">WITH GLASS</div>
+      </div>
+      <!-- sub heding -->
+      <div class="row mx-1">
+        <div class="col-6 bg-light border border-white" style="text-align: center; font-weight: 400;">
+          <div class="row">
+            <div class="col">EYE</div>
+            <div class="col">DISTANCE</div>
+            <div class="col">NEAR</div>
+            <div class="col">NEAR DIST.</div>
+          </div>
+        </div>
+        <div class="col-6 bg-light border border-white" style="text-align: center; font-weight: 400;">
+          <div class="row">
+            <div class="col">DISTANCE</div>
+            <div class="col">NEAR</div>
+            <div class="col"> NEAR DIST.</div>
+          </div>
+        </div>
+      </div>
+      <!-- first data row -->
+      <div class="row mx-1">
+        <div class="col-6 bg-light border border-white">
+          <div class="row">
+            <div class="col">
+              <%=patient.clinicalWorkup.vision.EyeOD%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.ODDistance%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.ODNear%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.ODNearDist%></div>
+          </div>
+        </div>
+        <div class="col-6 bg-light border border-white">
+          <div class="row">
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.GlassODDistance%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.GlassODNear%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.GlassODNearDist%></div>
+          </div>
+        </div>
+      </div>
+      <!-- second data row -->
+      <div class="row mx-1">
+        <div class="col-6 bg-light border border-white">
+          <div class="row">
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.EyeOS%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.OSDistance%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.OSNear%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.OSNearDist%></div>
+          </div>
+        </div>
+        <div class="col-6 bg-light border border-white">
+          <div class="row">
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.GlassOSDistance%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.GlassOSNear%></div>
+            <div class="col">
+            <%=patient.clinicalWorkup.vision.GlassOSNearDist%></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- previous glass prescription (pgp) template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>PREVIOUS GLASS PRECRIPTION</h4>
+    <table class="table table-bordered" id="pgptable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">EYE</th>
+          <th scope="col">SPHERICAL</th>
+          <th scope="col">CYLINDER</th>
+          <th scope="col">AXIS</th>
+          <th scope="col">ADDITION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.pgp.EyeOD%></th>
+          <td><%=patient.clinicalWorkup.pgp.ODSpherical%></td>
+          <td><%=patient.clinicalWorkup.pgp.ODCylinder%></td>
+          <td><%=patient.clinicalWorkup.pgp.ODAxis%></td>
+          <td><%=patient.clinicalWorkup.pgp.ODAddition%></td>
+        </tr>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.pgp.EyeOS%></th>
+          <td><%=patient.clinicalWorkup.pgp.OSSpherical%></td>
+          <td><%=patient.clinicalWorkup.pgp.OSCylinder%></td>
+          <td><%=patient.clinicalWorkup.pgp.OSAxis%></td>
+          <td><%=patient.clinicalWorkup.pgp.OSAddition%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- retinoscopy / autorefractometry template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>RETINOSCOPY / AUTOREFRACTOMETRY</h4>
+    <table class="table table-bordered" id="pgptable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">EYE</th>
+          <th scope="col">SPHERICAL</th>
+          <th scope="col">CYLINDER</th>
+          <th scope="col">AXIS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.retinoscopy.EyeOD%></th>
+          <td><%=patient.clinicalWorkup.retinoscopy.ODSpherical%></td>
+          <td><%=patient.clinicalWorkup.retinoscopy.ODCylinder%></td>
+          <td><%=patient.clinicalWorkup.retinoscopy.ODAxis%></td>
+        </tr>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.retinoscopy.EyeOS%></th>
+          <td><%=patient.clinicalWorkup.retinoscopy.OSSpherical%></td>
+          <td><%=patient.clinicalWorkup.retinoscopy.OSCylinder%></td>
+          <td><%=patient.clinicalWorkup.retinoscopy.OSAxis%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ocular motility template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>OCULAR MOTILITY</h4>
+    <table class="table table-bordered" id="pgptable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="w-25">EYE</th>
+          <th scope="col" class="w-75">DESCRIPTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.ocular.EyeOD%></th>
+          <td><%=patient.clinicalWorkup.ocular.ODDescription%></td>
+        </tr>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.ocular.EyeOS%></th>
+          <td><%=patient.clinicalWorkup.ocular.OSDescription%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- slit lamp examination template -->
+  <div class="slit-lamp-exmn border border-dark border-2 my-1 p-1">
+    <h4>SLIT LAMP EXAMINATION</h4>
+    <div class="bg-img-slit-lamp">
+      <div class="slit-lamp-input">
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.sle.Input1%>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.sle.Input2%>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.sle.Input3%>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.sle.Input4%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- intraocular pressure template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>INTRAOCULAR PRESSURE</h4>
+    <table class="table table-bordered" id="pgptable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">METHOD</th>
+          <th scope="col">OD</th>
+          <th scope="col">OS</th>
+          <th scope="col">TIME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%=patient.clinicalWorkup.intraocular.Method%></th>
+          <td><%=patient.clinicalWorkup.intraocular.OD%></td>
+          <td><%=patient.clinicalWorkup.intraocular.OS%></td>
+          <td><%=patient.clinicalWorkup.intraocular.Time%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- gonioscopy template -->
+  <div class="gonioscopy border border-dark border-2 my-1 p-1">
+    <h4>GONIOSCOPY</h4>
+    <div class="bg-img-gonioscopy">
+      <%=patient.clinicalWorkup.gonioscopy.Input11%>
+      <%=patient.clinicalWorkup.gonioscopy.Input12%>
+      <%=patient.clinicalWorkup.gonioscopy.Input21%>
+      <%=patient.clinicalWorkup.gonioscopy.Input22%>
+      <%=patient.clinicalWorkup.gonioscopy.Input23%>
+      <%=patient.clinicalWorkup.gonioscopy.Input24%>
+      <%=patient.clinicalWorkup.gonioscopy.Input31%>
+      <%=patient.clinicalWorkup.gonioscopy.Input32%>
+    </div>
+  </div>
+
+  <!-- fundus template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>FUNDUS</h4>
+    <div class="bg-img-fundus">
+      <div class="slit-lamp-input">
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.fundus.Input1%>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.fundus.Input2%>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.fundus.Input3%>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 py-2">
+            <%=patient.clinicalWorkup.fundus.Input4%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- investigation template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>INVESTIGATIONS</h4>
+    <table class="table table-bordered" id="investigationtable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="w-25">SL</th>
+          <th scope="col" class="w-50">NAME OF INVESTIGATION</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%  patient.clinicalWorkup.investigations.forEach((investigation, i)=>{ %>
+          <tr>
+            <th scope="row"><%=investigation.Slno%></th>
+            <td><%=investigation.Name%></td>
+          </tr>
+      <%  }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- diagnosis template -->
+  <div class="border border-dark border-2 my-1 p-1">
+    <h4>DIAGNOSIS</h4>
+    <table class="table table-bordered" id="diagnosistable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="">SL</th>
+          <th scope="col" class="">EYE</th>
+          <th scope="col" class="w-50">DESCRIPTION</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% patient.clinicalWorkup.diagnoses.forEach((diagnosis, i)=>{ %>
+        <tr>
+          <th scope="row"><%=diagnosis.Slno%></th>
+          <td><%=diagnosis.Eye%></td>
+          <td><%=diagnosis.Description%></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table>
+</div>
+
+</div>
+
+<%- include('../partials/headers/homeFooter'); -%>

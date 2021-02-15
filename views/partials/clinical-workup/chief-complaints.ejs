@@ -1,0 +1,74 @@
+<div>
+  <h4>CHIEF COMPLAINTS</h4>
+<div class="table-responsive">
+  <table class="table table-borderless " id="complaintable">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">SL.</th>
+        <th scope="col">EYE</th>
+        <th scope="col">DESCRIPTIONS</th>
+        <th scope="col">DURATION</th>
+        <th scope="col">ONSET</th>
+        <th scope="col">CURRENT</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <th scope="row"><input type="text" name="complainSl" class="form-control" /></th>
+        <td><input type="text" name="complainEye" class="form-control" /></td>
+        <td class=""><input type="text" name="complainDescription"  class="form-control"/></td>
+        <td><input type="text" name="complainDuration"  class="form-control"/></td>
+        <td><input type="text" name="complainOnset"  class="form-control"/></td>
+        <td><input type="text" name="comlainCurrent"  class="form-control"/></td>
+        <td><a class="deleteComplain"></a></td>
+      </tr> -->
+    </tbody>
+  </table>
+</div>
+  <button type="button" class="btn btn-light btn-block " id="addcomplain" name="addComplain">Add Complain</button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+      var counter = 1;
+
+      $("#addcomplain").on("click", function () {
+          var newRow = $("<tr>");
+          var cols = "";
+
+          cols += '<td><input type="text" class="form-control" name="complainSl"/></td>';
+          cols += '<td><input type="text" class="form-control" name="complainEye"/></td>';
+          cols += '<td><input type="text" class="form-control" name="complainDescription"/></td>';
+          cols += '<td><input type="text" class="form-control" name="complainDuration"/></td>';
+          cols += '<td><input type="text" class="form-control" name="complainOnset"/></td>';
+          cols += '<td><input type="text" class="form-control" name="complainCurrent"/></td>';
+
+          cols += '<td><input type="button" class="del-complain-btn btn btn-md btn-danger "  value="Delete"></td>';
+          newRow.append(cols);
+          $("#complaintable").append(newRow);
+          counter++;
+      });
+
+
+      $("table#complaintable").on("click", ".del-complain-btn", function (event) {
+          $(this).closest("tr").remove();
+          counter -= 1
+      });
+  });
+
+
+  function calculateRow(row) {
+      var price = +row.find('input[name^="price"]').val();
+
+  }
+
+  function calculateGrandTotal() {
+      var grandTotal = 0;
+      $("table#complaintable").find('input[name^="price"]').each(function () {
+          grandTotal += +$(this).val();
+      });
+      $("#grandtotal").text(grandTotal.toFixed(2));
+  }
+
+</script>

@@ -1,0 +1,143 @@
+.welcome {
+  padding: 1% 2%;
+  margin-bottom: 10%;
+}
+
+footer, .welcome {
+  text-align: center;
+}
+
+.pageTitle {
+  text-align: center;
+}
+
+.search-box {
+  height: 50px;
+}
+
+/* slit lamp examination */
+.bg-img-slit-lamp {
+  /* The image used */
+  background-image: url("../images/slit-lamp-exmn.png");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.slit-lamp-input {
+  position: relative;
+  top: 6rem;
+}
+.slit-lamp-input input{
+  border: none;
+  border-bottom: solid 2px black;
+}
+
+/* gonioscopy */
+.bg-img-gonioscopy {
+  /* The image used */
+  background-image: url("../images/gonioscopy.png");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.gonioscopy input{
+  background: transparent;
+  border: none;
+  outline: none;
+}
+#input11 {
+  margin: 70px 300px 40px 95px;
+}
+#input12 {
+  margin-left: 120px;
+  margin-right: auto;
+}
+#input21 {
+  margin: 35px 40px 30px 0;
+}
+#input22 {
+  margin-left: 35px;
+}
+#input23 {
+  margin-left: 90px;
+}
+#input24 {
+  margin-left: 93px;
+}
+#input31 {
+  margin-top: 47px;
+  margin-left: 90px;
+}
+#input32 {
+  margin-left: 430px;
+}
+
+/* fundus  */
+.bg-img-fundus {
+  /* The image used */
+  background-image: url("../images/fundus.png");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/*print media query to only print one of the two prescription at a time(a part of the webpage) */
+@media print {
+  .tobehidden {
+    display: none;
+  }
+  .hidehr {
+    display: none;
+  }
+  body {
+    margin-top: 5%;
+  }
+}
+
+/*position close icon on clinical workup template of search result */
+/* .close-icon {
+  font-size: 1rem;
+} */
+.close-icon:hover {
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+/* add border to search results when hover */
+.dislay-found-patients .btn:hover {
+  border-style: solid;
+  border-color: #36d8f5;
+}
+
+
+/* table automatic row numbers */
+/* .complaintable {
+    counter-reset: rowNumber;
+}
+
+.complaintable tr {
+    counter-increment: rowNumber;
+}
+
+.complaintable tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+} */
