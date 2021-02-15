@@ -19,17 +19,19 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 //for session and cookies
 app.use(session({
-  secret: process.env.MY_SECRET,
+  // secret: process.env.MY_SECRET,
+  secret: "IloveYouBABimywiF3",
   resave: false,
   saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://localhost:27017/clinicDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+//mongo atlas connection uri
+// const myUrl = "mongodb+srv://admin-Babi:"+process.env.MY_DB_PASS+"@cluster0.t8a8z.mongodb.net/"+process.env.MY_DB+"?retryWrites=true&w=majority";
+const myUrl = "mongodb+srv://admin-Babi:maLv@cluster0.t8a8z.mongodb.net/clinicDB?retryWrites=true&w=majority";
+
+mongoose.connect(myUrl, {  useNewUrlParser: true, useUnifiedTopology: true });
 //for deprecation warnings
 mongoose.set("useCreateIndex", true);
 
