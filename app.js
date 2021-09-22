@@ -28,8 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //mongo atlas connection uri
-// const myUrl = "mongodb+srv://admin-Babi:"+process.env.MY_DB_PASS+"@cluster0.t8a8z.mongodb.net/"+process.env.MY_DB+"?retryWrites=true&w=majority";
-const myUrl = "mongodb+srv://admin-Babi:maLv@cluster0.t8a8z.mongodb.net/clinicDB?retryWrites=true&w=majority";
+const myUrl = process.env.MONGO_DB_URL;
 
 mongoose.connect(myUrl, {  useNewUrlParser: true, useUnifiedTopology: true });
 //for deprecation warnings
